@@ -1,0 +1,27 @@
+version: '3'
+networks:
+  redsamuel:
+    driver: bridge
+   
+services:
+  nginx:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "8069:80"
+    volumes:
+        - ~C:\Users\Ssepu\Desktop\samuelsm\datadrive:/usr/share/nginx/html
+    networks:
+      - redsamuel
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: myuserpassword
+    ports:
+      - "3306:3306"
+    networks:
+      - redsamuel
